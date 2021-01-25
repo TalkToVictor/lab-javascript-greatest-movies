@@ -27,7 +27,25 @@ function howManyMovies(someMovies) {
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 
 // Iteration 3: All rates average - Get the average of all rates with 2 decimals
+function ratesAverage(lotsOfMovies) {
+    //  return !lotsOfMovies.length? 0 : Number((lotsOfMovies.reduce((a,b) => b.rate? a + b.rate : a, 0)/lotsOfMovies.length).toFixed(2));
+    // this is the one line version
 
+    if (!lotsOfMovies.length) {
+        return 0;
+    }
+
+    let total = lotsOfMovies.reduce((a, b) => {
+        if (b.rate) {
+            return a + b.rate;
+        } else {
+            return a;
+        }
+    }, 0);
+
+    // you can use Number(), parseInt() or simply plus +
+    return Number((total / lotsOfMovies.length).toFixed(2));
+}
 // Iteration 4: Drama movies - Get the average of Drama Movies
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
