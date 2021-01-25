@@ -47,6 +47,11 @@ function ratesAverage(lotsOfMovies) {
     return Number((total / lotsOfMovies.length).toFixed(2));
 }
 // Iteration 4: Drama movies - Get the average of Drama Movies
+function dramaMoviesRate(someMovies) {
+    let drMovies = someMovies.filter((eachMovie) =>
+        eachMovie.genre.includes("Drama")
+    );
+    return ratesAverage(drMovies);
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 
