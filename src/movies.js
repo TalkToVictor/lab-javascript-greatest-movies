@@ -87,6 +87,53 @@ function dramaMoviesRate(someMovies) {
             })
             .map((eachMovie) => eachMovie.title)
             .slice(0, 20);
-// BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+        // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
+        function convertHours(hourString) {
+            // ["2", ""]
+            let calculateHour = hourString.split("h");
+            return calculateHour[0] * 60;
+            // "2" * 60
+            // 120
+        }
 
+        // "33min"
+        function convertMinutes(minuteString) {
+            // ["33", ""]
+            let calculateMinutes = minuteString.split("min");
+            return Number(calculateMinutes[0]);
+            // return +(calculateMinutes[0]); // this is alternative fancier way
+            // 33
+        }
+
+        function convertDuration(duration) {
+            let timePieces = duration.split(" ");
+            // ["2h", "33min"]
+            // ["2h"]
+            // ["33min"]
+
+            let minutes = timePieces.reduce((sum, onePiece) => {
+                if (onePiece.includes("h")) {
+                    return sum + convertHours(onePiece);
+                }
+                return sum + convertMinutes(onePiece);
+            }, 0);
+
+            return minutes;
+        }
+
+        function turnHoursToMinutes(movies) {
+            let newCentArray = movies.map((oneMovie) => {
+                let newMovie = {};
+                newMovie.title = oneMovie.title;
+                newMovie.year = oneMovie.year;
+                newMovie.director = oneMovie.director;
+                newMovie.duration = convertDuration(oneMovie.duration);
+                newMovie.genre = oneMovie.genre;
+                newMovie.rate = oneMovie.rate;
+
+                return newMovie;
+            });
+
+            return newCentArray;
+        }
 // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
