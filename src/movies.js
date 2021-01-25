@@ -136,4 +136,26 @@ function dramaMoviesRate(someMovies) {
 
             return newCentArray;
         }
-// BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+        // BONUS - Iteration 8: Best yearly rate average - Best yearly rate average
+        function bestYearAvg(lotsOfMovies) {
+            if (!lotsOfMovies.length) return null;
+
+            let masterObject = {};
+
+            lotsOfMovies.forEach((eachMovie) => {
+                if (!masterObject[eachMovie.year]) {
+                    masterObject[eachMovie.year] = [eachMovie];
+                } else {
+                    masterObject[eachMovie.year].push(eachMovie);
+                }
+            });
+
+            let highest = 0;
+            let theActualYear;
+            for (let theYear in masterObject) {
+                if (ratesAverage(masterObject[theYear]) > highest) {
+                    highest = ratesAverage(masterObject[theYear]);
+                    theActualYear = theYear;
+                }
+            }
+            return `The best year was ${theActualYear} with an average rate of ${highest}`;
