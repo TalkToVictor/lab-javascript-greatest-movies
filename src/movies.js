@@ -86,3 +86,19 @@ function turnHoursToMinutes(movies) {
     });
     return movieMins;
 }
+// time format
+
+function turnHoursToMinutes(movies) {
+    return movies.map(movie => {
+        const duration = movie.duration.split(" ");
+        let mins = 0;
+        for (let time of duration) {
+            if (time.includes("h")) {
+                mins += parseInt(time) * 60;
+            } else {
+                mins += parseInt(time);
+            }
+        }
+        return { ...movie, duration: mins };
+    });
+}
